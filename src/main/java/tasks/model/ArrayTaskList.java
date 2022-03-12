@@ -1,7 +1,4 @@
 package tasks.model;
-
-
-
 import org.apache.log4j.Logger;
 
 import java.util.*;
@@ -13,8 +10,9 @@ public class ArrayTaskList extends TaskList{
     private int numberOfTasks;
     private int currentCapacity;
     private static final Logger log = Logger.getLogger(ArrayTaskList.class.getName());
-    private class ArrayTaskListIterator implements Iterator<Task> {
-        private int cursor;
+    private class ArrayTaskListIterator implements Iterator<Task>
+    {
+        private int cursor=0;
         private int lastCalled = -1;
         @Override
         public boolean hasNext() {
@@ -28,7 +26,9 @@ public class ArrayTaskList extends TaskList{
                 throw new NoSuchElementException("No next element");
             }
             lastCalled = cursor;
-            return getTask(cursor++);
+            Task t = getTask(cursor);
+            cursor++;
+            return t;
         }
 
         @Override
@@ -52,10 +52,14 @@ public class ArrayTaskList extends TaskList{
     }
 
     @Override
-    public void add(Task task){
-        if (task==null) throw new NullPointerException("Task shouldn't be null");
+    public void add(Task task)
+    {
+        final int doi=2;
+        if (task==null) {
+            throw new IllegalArgumentException("Task shouldn't be null");
+        }
         if (numberOfTasks == currentCapacity-1){
-            currentCapacity = currentCapacity * 2;
+            currentCapacity = currentCapacity * doi;
             Task[] withAddedTask = new Task[currentCapacity];
             System.arraycopy(tasks,0,withAddedTask,0,tasks.length);
             this.tasks = withAddedTask;
@@ -99,7 +103,9 @@ public class ArrayTaskList extends TaskList{
     public List<Task> getAll() {
         ArrayList<Task> tks=new ArrayList<>();
         for (int i=0; i<this.numberOfTasks;i++)
+        {
             tks.add(this.tasks[i]);
+        }
         return tks;
     }
 
@@ -138,13 +144,13 @@ public class ArrayTaskList extends TaskList{
                 '}';
     }
     @Override
-    protected ArrayTaskList clone() throws CloneNotSupportedException {
-        ArrayTaskList tasks = new ArrayTaskList();
+    protected ArrayTaskList clone() throws CloneNotSupportedException
+    {
+        ArrayTaskList tasksClone = new ArrayTaskList();
         for (int i = 0; i < this.tasks.length; i++){
-            tasks.add(this.getTask(i));
+            tasksClone.add(this.getTask(i));
         }
-        return tasks;
-
+        return tasksClone;
     }
 
 }
