@@ -39,10 +39,18 @@ public class TasksService {
 
     public int parseFromStringToSeconds(String stringTime){//hh:MM
         String[] units = stringTime.split(":");
-        int hours = Integer.parseInt(units[0]);
-        int minutes = Integer.parseInt(units[1]);
-        int result = (hours * DateService.MINUTES_IN_HOUR + minutes) * DateService.SECONDS_IN_MINUTE;
-        return result;
+        if(units.length!=2){
+            throw new RuntimeException("Invalid format! Expected format: hh:MM");
+        }
+        try{
+            int hours = Integer.parseInt(units[0]);
+            int minutes = Integer.parseInt(units[1]);
+            int result = (hours * DateService.MINUTES_IN_HOUR + minutes) * DateService.SECONDS_IN_MINUTE;
+            return result;
+        }catch (Exception e){
+            throw new RuntimeException("Invalid number conversion!");
+        }
+
     }
 
     public Iterable<Task> filterTasks(Date start, Date end){

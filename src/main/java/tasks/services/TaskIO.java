@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import tasks.model.LinkedTaskList;
 import tasks.model.Task;
 import tasks.model.TaskList;
-import tasks.view.*;
+import tasks.ui.*;
 
 import java.io.*;
 import java.text.ParseException;
@@ -78,7 +78,8 @@ public class TaskIO {
             log.error("IO exception reading or writing file");
         }
         finally {
-            fos.close();
+            if(fos!=null)
+                fos.close();
         }
     }
 
@@ -92,7 +93,8 @@ public class TaskIO {
             log.error("IO exception reading or writing file");
         }
         finally {
-            fis.close();
+            if(fis!=null)
+                fis.close();
         }
     }
     public static void write(TaskList tasks, Writer out) throws IOException {

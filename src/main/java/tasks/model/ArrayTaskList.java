@@ -13,9 +13,7 @@ public class ArrayTaskList extends TaskList{
     private int numberOfTasks;
     private int currentCapacity;
     private static final Logger log = Logger.getLogger(ArrayTaskList.class.getName());
-
     private class ArrayTaskListIterator implements Iterator<Task> {
-
         private int cursor;
         private int lastCalled = -1;
         @Override
@@ -43,8 +41,6 @@ public class ArrayTaskList extends TaskList{
             lastCalled = -1;
         }
     }
-
-
     public ArrayTaskList(){
         currentCapacity = 10;
         this.tasks = new Task[currentCapacity];
@@ -57,7 +53,7 @@ public class ArrayTaskList extends TaskList{
 
     @Override
     public void add(Task task){
-        if (task.equals(null)) throw new NullPointerException("Task shouldn't be null");
+        if (task==null) throw new NullPointerException("Task shouldn't be null");
         if (numberOfTasks == currentCapacity-1){
             currentCapacity = currentCapacity * 2;
             Task[] withAddedTask = new Task[currentCapacity];
@@ -88,14 +84,14 @@ public class ArrayTaskList extends TaskList{
     public int size(){
         return this.numberOfTasks;
     }
-
-
     @Override
     public Task getTask(int index){
         if (index < 0 || index > size()-1) {
             log.error("not existing index");
             throw new IndexOutOfBoundsException("Index not found");
         }
+
+
         return tasks[index];
     }
 
