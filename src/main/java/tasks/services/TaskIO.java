@@ -295,7 +295,7 @@ public class TaskIO {
             taskList.add(t);
         }
         try {
-            TaskIO.writeBinary(taskList, Main.savedTasksFile);
+            TaskIO.writeBinary(taskList, MainUI.savedTasksFile);
         }
         catch (IOException e){
             log.error("IO exception reading or writing file");

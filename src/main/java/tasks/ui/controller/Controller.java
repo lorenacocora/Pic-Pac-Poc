@@ -17,7 +17,7 @@ import tasks.model.Task;
 import tasks.services.DateService;
 import tasks.services.TaskIO;
 import tasks.services.TasksService;
-import tasks.ui.Main;
+import tasks.ui.MainUI;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -96,7 +96,7 @@ public class Controller {
             editCtrl.setCurrentTask((Task)mainTable.getSelectionModel().getSelectedItem());
             editNewStage.setScene(new Scene(root, 600, 350));
             editNewStage.setResizable(false);
-            editNewStage.initOwner(Main.primaryStage);
+            editNewStage.initOwner(MainUI.primaryStage);
             editNewStage.initModality(Modality.APPLICATION_MODAL);//??????
             editNewStage.show();
         }
