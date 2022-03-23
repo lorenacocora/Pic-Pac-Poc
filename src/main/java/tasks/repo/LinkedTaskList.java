@@ -1,7 +1,8 @@
-package tasks.model;
+package tasks.repo;
 
 
 import org.apache.log4j.Logger;
+import tasks.model.Task;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -53,6 +54,7 @@ public class LinkedTaskList  extends TaskList {
         if (last!= null) last.setNext(newNode);
         last = newNode;
     }
+
     @Override
     public boolean remove(Task task) {
         if (isNull(task)) {

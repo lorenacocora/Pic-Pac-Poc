@@ -160,6 +160,8 @@ public class NewEditController {
         TaskIO.rewriteFile(tasksList);
         Controller.editNewStage.close();
     }
+
+
     @FXML
     private void closeDialogWindow(){
         Controller.editNewStage.close();

@@ -1,10 +1,11 @@
-package tasks.model;
+package tasks.repo;
 import org.apache.log4j.Logger;
+import tasks.model.Task;
 
 import java.util.*;
 
 
-public class ArrayTaskList extends TaskList{
+public class ArrayTaskList extends TaskList {
 
     private Task[] tasks;
     private int numberOfTasks;

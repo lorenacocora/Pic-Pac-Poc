@@ -2,9 +2,9 @@ package tasks.services;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import tasks.model.ArrayTaskList;
+import tasks.repo.ArrayTaskList;
 import tasks.model.Task;
-import tasks.model.TasksOperations;
+import tasks.repo.TasksOperations;
 
 import java.util.Date;
 
@@ -60,4 +60,6 @@ public class TasksService {
 
         return filtered;
     }
+
+
 }

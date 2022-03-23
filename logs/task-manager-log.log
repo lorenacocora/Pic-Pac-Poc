@@ -59,3 +59,17 @@
 2022-03-16 17:51:22 INFO  Main:38 - saved data reading
 2022-03-16 17:52:02 INFO  Main:38 - saved data reading
 2022-03-16 17:56:12 INFO  MainUI:36 - saved data reading
+2022-03-16 18:00:38 INFO  MainUI:36 - saved data reading
+2022-03-16 18:00:38 INFO  MainUI:42 - application start
+2022-03-16 18:00:39 INFO  Controller:74 - Main controller initializing
+2022-03-23 17:49:45 INFO  MainUI:36 - saved data reading
+2022-03-23 17:49:45 INFO  MainUI:42 - application start
+2022-03-23 17:49:45 INFO  Controller:74 - Main controller initializing
+2022-03-23 17:49:48 INFO  NewEditController:91 - new/edit window initializing
+2022-03-23 17:52:38 INFO  MainUI:36 - saved data reading
+2022-03-23 17:52:38 INFO  MainUI:42 - application start
+2022-03-23 17:52:38 INFO  Controller:74 - Main controller initializing
+2022-03-23 17:53:40 INFO  MainUI:36 - saved data reading
+2022-03-23 17:53:40 INFO  MainUI:42 - application start
+2022-03-23 17:53:41 INFO  Controller:74 - Main controller initializing
+2022-03-23 17:53:42 INFO  NewEditController:91 - new/edit window initializing
