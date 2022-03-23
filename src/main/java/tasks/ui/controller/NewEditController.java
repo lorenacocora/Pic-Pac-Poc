@@ -141,6 +141,13 @@ public class NewEditController {
         fieldInterval.setText(DEFAULT_INTERVAL_TIME);
     }
 
+    /*
+    newTitle - noul titlu, String, intre 3 si 20 de caractere
+    newStartDate - noua data de inceput, Date, >= ziua curenta din anul curent si  <= ziua curenta peste 85 de ani
+    isRepeated - specifica daca taskul este recurent, boolean
+    newEndDate - noua data de sfarsit, Date, >= startDate
+    isActive - specifica daca taskul este activ, boolean
+     */
     void addTask(String newTitle,
                  Date newStartDate,
                  boolean isRepeated,
