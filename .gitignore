@@ -2,3 +2,8 @@
 .idea/
 build/
 build 
+target
+target/
+*.iml
+logs
+logs/

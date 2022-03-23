@@ -141,13 +141,36 @@ public class NewEditController {
         fieldInterval.setText(DEFAULT_INTERVAL_TIME);
     }
 
+    void addTask(String newTitle,
+                 Date newStartDate,
+                 boolean isRepeated,
+                 Date newEndDate,
+                 boolean isActive){
+        Task result;
+        if (isRepeated){
+            int newInterval = service.parseFromStringToSeconds(fieldInterval.getText());
+            if (newStartDate.after(newEndDate)) throw new IllegalArgumentException("Start date should be before end");
+            result = new Task(newTitle, newStartDate,newEndDate, newInterval);
+        }
+        else {
+            result = new Task(newTitle, newStartDate);
+        }
+        result.setActive(isActive);
+        System.out.println(result);
+        tasksList.add(result);
+    }
+
     @FXML
     private void saveChanges(){
         Task collectedFieldsTask = collectFieldsData();
         if (incorrectInputMade) return;
 
         if (currentTask == null){//no task was chosen -> add button was pressed
-            tasksList.add(collectedFieldsTask);
+            addTask(collectedFieldsTask.getTitle(),
+                    collectedFieldsTask.getStartTime(),
+                    collectedFieldsTask.isRepeated(),
+                    collectedFieldsTask.getEndTime(),
+                    collectedFieldsTask.isActive());
         }
         else {
             for (int i = 0; i < tasksList.size(); i++){
