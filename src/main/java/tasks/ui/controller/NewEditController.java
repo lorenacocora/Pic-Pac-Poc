@@ -148,7 +148,7 @@ public class NewEditController {
     newEndDate - noua data de sfarsit, Date, >= startDate
     isActive - specifica daca taskul este activ, boolean
      */
-    void addTask(String newTitle,
+    Task addTask(String newTitle,
                  Date newStartDate,
                  boolean isRepeated,
                  Date newEndDate,
@@ -164,7 +164,8 @@ public class NewEditController {
         }
         result.setActive(isActive);
         System.out.println(result);
-        tasksList.add(result);
+        return result;
+
     }
 
     @FXML
@@ -173,11 +174,11 @@ public class NewEditController {
         if (incorrectInputMade) return;
 
         if (currentTask == null){//no task was chosen -> add button was pressed
-            addTask(collectedFieldsTask.getTitle(),
+            tasksList.add(addTask(collectedFieldsTask.getTitle(),
                     collectedFieldsTask.getStartTime(),
                     collectedFieldsTask.isRepeated(),
                     collectedFieldsTask.getEndTime(),
-                    collectedFieldsTask.isActive());
+                    collectedFieldsTask.isActive()));
         }
         else {
             for (int i = 0; i < tasksList.size(); i++){

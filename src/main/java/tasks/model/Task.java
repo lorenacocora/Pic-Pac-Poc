@@ -21,7 +21,9 @@ public class Task implements Serializable, Cloneable {
     public static SimpleDateFormat getDateFormat(){
         return sdf;
     }
-    public Task(String title, Date time){
+
+    public Task(String title, Date time)
+    {
         if (time.getTime() < 0) {
             log.error("time below bound");
             throw new IllegalArgumentException("Time cannot be negative");
@@ -45,6 +47,19 @@ public class Task implements Serializable, Cloneable {
         this.end = end;
         this.interval = interval;
         this.time = start;
+    }
+
+    public Task(String title, Date start, Date end, boolean active, int interval){
+        if (start.getTime() < 0 || end.getTime() < 0) {
+            log.error("time below bound");
+            throw new IllegalArgumentException("Time cannot be negative");
+        }
+
+        this.title = title;
+        this.start = start;
+        this.end = end;
+        this.active = active;
+        this.interval = interval;
     }
 
     public String getTitle() {
@@ -93,7 +108,6 @@ public class Task implements Serializable, Cloneable {
     }
     public boolean isRepeated(){
         return !(this.interval == 0);
-
     }
     public Date nextTimeAfter(Date current)
     {
@@ -189,6 +203,39 @@ public class Task implements Serializable, Cloneable {
             return false;
         }
         if (active != task.active)
+        {
+            return false;
+        }
+        return title.equals(task.title);
+    }
+
+
+    public boolean myEquals(Object o)
+    {
+        if (this == o)
+        {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass())
+        {
+            return false;
+        }
+
+        Task task = (Task) o;
+
+        if (!start.equals(task.start))
+        {
+            return false;
+        }
+        if (!end.equals(task.end))
+        {
+            return false;
+        }
+        if (active != task.active)
+        {
+            return false;
+        }
+        if (isRepeated() != task.isRepeated())
         {
             return false;
         }

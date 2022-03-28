@@ -23,7 +23,8 @@ class TaskTest {
     }
 
     @Test
-    void testTaskCreation() throws ParseException {
+    void testTaskCreation() throws ParseException
+    {
        assert task.getTitle() == "new task";
         System.out.println(task.getFormattedDateStart());
         System.out.println(task.getDateFormat().format(Task.getDateFormat().parse("2021-02-12 10:10")));
