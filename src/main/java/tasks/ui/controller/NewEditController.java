@@ -14,12 +14,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 import tasks.model.Task;
+import tasks.model.ValidationException;
 import tasks.services.DateService;
 import tasks.services.TaskIO;
 import tasks.services.TasksService;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 
@@ -140,6 +142,7 @@ public class NewEditController {
         txtFieldTimeEnd.setText(DEFAULT_END_TIME);
         fieldInterval.setText(DEFAULT_INTERVAL_TIME);
     }
+    public Date convertToDateViaInstant(LocalDate dateToConvert) { return java.util.Date.from(dateToConvert.atStartOfDay() .atZone(ZoneId.systemDefault()) .toInstant()); }
 
     /*
     newTitle - noul titlu, String, intre 3 si 20 de caractere
@@ -153,6 +156,15 @@ public class NewEditController {
                  boolean isRepeated,
                  Date newEndDate,
                  boolean isActive){
+        String errors = "";
+        if(newTitle.length() > 20)
+            errors+="Title too long!\n";
+        if(newTitle.length() < 3)
+            errors+="Title too short!\n";
+        if(newStartDate.after(convertToDateViaInstant(LocalDate.now().plusYears(85))))
+            errors+="Date too distant!\n";
+        if(errors.length() > 0)
+            throw new ValidationException(errors);
         Task result;
         if (isRepeated){
             int newInterval = service.parseFromStringToSeconds(fieldInterval.getText());
@@ -165,7 +177,6 @@ public class NewEditController {
         result.setActive(isActive);
         System.out.println(result);
         return result;
-
     }
 
     @FXML

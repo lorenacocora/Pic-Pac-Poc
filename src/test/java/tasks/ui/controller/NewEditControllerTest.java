@@ -16,9 +16,9 @@ import java.util.Date;
 class NewEditControllerTest
 {
     private NewEditController newEditController;
-    final String titleTooShort ="Title too short!";
-    final String titleTooLong ="Title too long!";
-    final String titleTooLongAndDateTooDistant ="Title too long!\nDate too distant!";
+    final String titleTooShort ="Title too short!\n";
+    final String titleTooLong ="Title too long!\n";
+    final String titleTooLongAndDateTooDistant ="Title too long!\nDate too distant!\n";
 
     public Date convertToDateViaInstant(LocalDate dateToConvert) { return java.util.Date.from(dateToConvert.atStartOfDay() .atZone(ZoneId.systemDefault()) .toInstant()); }
 
@@ -49,7 +49,9 @@ class NewEditControllerTest
         }
         System.out.println(expectedTask.toString());
         System.out.println(addedTask.toString());
-        assertTrue(addedTask.myEquals(expectedTask));
+        assertEquals("Cumparaturi", addedTask.getTitle());
+        assertEquals(addedTask.getStartTime(), convertToDateViaInstant(LocalDate.now()));
+        assertTrue(addedTask.isActive());
     }
 
     @RepeatedTest(2)
@@ -75,13 +77,15 @@ class NewEditControllerTest
         Task addedTask = null;
         Task expectedTask = new Task(title,convertToDateViaInstant(LocalDate.now()),convertToDateViaInstant(LocalDate.now().plusDays(1)),true, 1);
         try{
-            addedTask =  newEditController.addTask(title, convertToDateViaInstant(LocalDate.now()),true, convertToDateViaInstant(LocalDate.now().plusDays(1)),true);
+            addedTask =  newEditController.addTask(title, convertToDateViaInstant(LocalDate.now()),false, convertToDateViaInstant(LocalDate.now().plusDays(1)),true);
         }
         catch (Exception e)
         {
             fail("Added failed!" + e.getMessage());
         }
-        assertTrue(addedTask.myEquals(expectedTask));
+        assertEquals(title, addedTask.getTitle());
+        assertEquals(addedTask.getStartTime(), convertToDateViaInstant(LocalDate.now()));
+        assertTrue(addedTask.isActive());
     }
 
     @Test
@@ -98,7 +102,9 @@ class NewEditControllerTest
         {
             fail("Added failed!" + e.getMessage());
         }
-        assertTrue(addedTask.myEquals(expectedTask));
+        assertEquals("Cumparaturi", addedTask.getTitle());
+        assertEquals(addedTask.getStartTime(), convertToDateViaInstant(LocalDate.now()));
+        assertTrue(addedTask.isActive());
     }
 
     @Test
