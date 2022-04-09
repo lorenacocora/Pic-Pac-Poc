@@ -92,6 +92,10 @@ public class Task implements Serializable, Cloneable {
         return start;
     }
 
+    public void setInterval(int interval) {
+        this.interval = interval;
+    }
+
     public Date getEndTime() {
         return end;
     }
