@@ -1,9 +1,0 @@
-tasks\services\TaskIO.class
-tasks\ui\controller\TaskInfoController.class
-tasks\ui\controller\Controller.class
-tasks\ui\controller\NewEditController.class
-tasks\model\Task.class
-tasks\services\TasksService.class
-tasks\ui\controller\Notificator.class
-tasks\services\DateService.class
-tasks\ui\helpers\UiHelper.class

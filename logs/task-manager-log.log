@@ -73,3 +73,9 @@
 2022-03-23 17:53:40 INFO  MainUI:42 - application start
 2022-03-23 17:53:41 INFO  Controller:74 - Main controller initializing
 2022-03-23 17:53:42 INFO  NewEditController:91 - new/edit window initializing
+2022-04-18 21:16:52 INFO  MainUI:36 - saved data reading
+2022-04-18 21:16:52 INFO  MainUI:42 - application start
+2022-04-18 21:16:52 INFO  Controller:74 - Main controller initializing
+2022-04-18 21:17:25 INFO  MainUI:36 - saved data reading
+2022-04-18 21:17:25 INFO  MainUI:42 - application start
+2022-04-18 21:17:25 INFO  Controller:74 - Main controller initializing

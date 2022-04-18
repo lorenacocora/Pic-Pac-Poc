@@ -35,4 +35,30 @@ class TaskTest {
     @AfterEach
     void tearDown() {
     }
+
+    @Test
+    void getDateFormat() {
+    }
+
+    @Test
+    void getTitle() {
+        assertEquals("new task", task.getTitle());
+    }
+
+    @Test
+    void setTitle() {
+        task.setTitle("new title new task");
+        assertEquals("new title new task", task.getTitle());
+    }
+
+    @Test
+    void isActive() {
+        assertEquals(false,task.isActive());
+    }
+
+    @Test
+    void setActive() {
+        task.setActive(true);
+        assertEquals(true,task.isActive());
+    }
 }
