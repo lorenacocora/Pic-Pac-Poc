@@ -1,0 +1,163 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TasksOperations</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">tasks.repo</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TasksOperations (tasks.repo)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TasksOperations</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    56.7%
+  </span>
+  <span class="absValue">
+    (17/ 30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package tasks.repo;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import javafx.collections.ObservableList;
+<i>4</i>&nbsp;import tasks.model.Task;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.*;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public class TasksOperations {
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    private ArrayList&lt;Task&gt; tasks;
+<i>11</i>&nbsp;
+<b class="fc"><i>12</i>&nbsp;    public TasksOperations(ObservableList&lt;Task&gt; tasksList){</b>
+<b class="fc"><i>13</i>&nbsp;        tasks=new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>14</i>&nbsp;        tasks.addAll(tasksList);</b>
+<b class="fc"><i>15</i>&nbsp;    }</b>
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;//    public Iterable&lt;Task&gt; incoming(Date start, Date end)
+<i>18</i>&nbsp;//    {
+<i>19</i>&nbsp;//        System.out.println(start);
+<i>20</i>&nbsp;//        System.out.println(end);
+<i>21</i>&nbsp;//        ArrayList&lt;Task&gt; incomingTasks = new ArrayList&lt;&gt;();
+<i>22</i>&nbsp;//        for (Task t : tasks) {
+<i>23</i>&nbsp;//            Date nextTime = t.nextTimeAfter(start);
+<i>24</i>&nbsp;//            if (nextTime != null &amp;&amp; (nextTime.before(end) || nextTime.equals(end))) {
+<i>25</i>&nbsp;//                incomingTasks.add(t);
+<i>26</i>&nbsp;//                System.out.println(t.getTitle());
+<i>27</i>&nbsp;//            }
+<i>28</i>&nbsp;//        }
+<i>29</i>&nbsp;//        return incomingTasks;
+<i>30</i>&nbsp;//    }
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;    public Iterable&lt;Task&gt; incoming(Date start, Date end)
+<i>33</i>&nbsp;    {
+<i>34</i>&nbsp;
+<b class="fc"><i>35</i>&nbsp;        ArrayList&lt;Task&gt; incomingTasks = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>36</i>&nbsp;        if(start.after(end))</b>
+<b class="fc"><i>37</i>&nbsp;            throw new IllegalArgumentException(&quot;Start date cannot be after the end date!&quot;);</b>
+<b class="fc"><i>38</i>&nbsp;        for (Task t : tasks)</b>
+<i>39</i>&nbsp;        {
+<b class="fc"><i>40</i>&nbsp;            Date nextTime = t.nextTimeAfter(start);</b>
+<b class="fc"><i>41</i>&nbsp;            System.out.println(nextTime);</b>
+<b class="fc"><i>42</i>&nbsp;            if (nextTime != null)</b>
+<i>43</i>&nbsp;            {
+<b class="fc"><i>44</i>&nbsp;                if (nextTime.before(end))</b>
+<i>45</i>&nbsp;                {
+<b class="fc"><i>46</i>&nbsp;                    incomingTasks.add(t);</b>
+<i>47</i>&nbsp;                }
+<b class="fc"><i>48</i>&nbsp;                if (nextTime.equals(end))</b>
+<i>49</i>&nbsp;                {
+<b class="fc"><i>50</i>&nbsp;                    incomingTasks.add(t);</b>
+<i>51</i>&nbsp;                }
+<i>52</i>&nbsp;            }
+<b class="fc"><i>53</i>&nbsp;        }</b>
+<b class="fc"><i>54</i>&nbsp;        return incomingTasks;</b>
+<i>55</i>&nbsp;    }
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    public SortedMap&lt;Date, Set&lt;Task&gt;&gt; calendar( Date start, Date end)
+<i>59</i>&nbsp;    {
+<b class="nc"><i>60</i>&nbsp;        Iterable&lt;Task&gt; incomingTasks = incoming(start, end);</b>
+<b class="nc"><i>61</i>&nbsp;        TreeMap&lt;Date, Set&lt;Task&gt;&gt; calendar = new TreeMap&lt;&gt;();</b>
+<i>62</i>&nbsp;
+<b class="nc"><i>63</i>&nbsp;        for (Task t : incomingTasks){</b>
+<b class="nc"><i>64</i>&nbsp;            Date nextTimeAfter = t.nextTimeAfter(start);</b>
+<b class="nc"><i>65</i>&nbsp;            while (nextTimeAfter!= null &amp;&amp; (nextTimeAfter.before(end) || nextTimeAfter.equals(end))){</b>
+<b class="nc"><i>66</i>&nbsp;                if (calendar.containsKey(nextTimeAfter)){</b>
+<b class="nc"><i>67</i>&nbsp;                    calendar.get(nextTimeAfter).add(t);</b>
+<i>68</i>&nbsp;                }
+<i>69</i>&nbsp;                else {
+<b class="nc"><i>70</i>&nbsp;                    HashSet&lt;Task&gt; oneDateTasks = new HashSet&lt;&gt;();</b>
+<b class="nc"><i>71</i>&nbsp;                    oneDateTasks.add(t);</b>
+<b class="nc"><i>72</i>&nbsp;                    calendar.put(nextTimeAfter,oneDateTasks);</b>
+<i>73</i>&nbsp;                }
+<b class="nc"><i>74</i>&nbsp;                nextTimeAfter = t.nextTimeAfter(nextTimeAfter);</b>
+<i>75</i>&nbsp;            }
+<b class="nc"><i>76</i>&nbsp;        }</b>
+<b class="nc"><i>77</i>&nbsp;        return calendar;</b>
+<i>78</i>&nbsp;    }
+<i>79</i>&nbsp;}
+<i>80</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-13 16:55</div>
+</div>
+</body>
+</html>

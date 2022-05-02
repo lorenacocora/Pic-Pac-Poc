@@ -40,7 +40,6 @@ public class TasksOperations {
         for (Task t : tasks)
         {
             Date nextTime = t.nextTimeAfter(start);
-            System.out.println(nextTime);
             if (nextTime != null)
             {
                 if (nextTime.before(end))
@@ -77,6 +76,12 @@ public class TasksOperations {
             }
         }
         return calendar;
+    }
+
+
+    public void addTask(Task t)
+    {
+        tasks.add(t);
     }
 }
 
